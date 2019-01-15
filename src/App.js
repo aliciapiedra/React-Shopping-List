@@ -9,9 +9,19 @@ class App extends Component {
   state = { groceries: groceriesList }
 
   addGroceries = name => {
-    const { players } = this.state
-    groceriesList.push({ name: name, id: groceriesList.length })
-    this.setState({ groceriesList })
+    const {  groceries } = this.state
+    let unique = true
+    groceries.forEach((grocery) => {
+      if (grocery.name.toLowerCase() === name.toLowerCase()) {
+        unique = false
+      } 
+    })
+    if (unique){
+      groceries.push({ name: name, id: groceries.length })
+      this.setState({ groceries })
+    } else {
+      alert('That item is already on the list!')
+    }
   }
 
   render() {
@@ -20,7 +30,7 @@ class App extends Component {
       <div className="App">
         <Header title="Shopping List"/>
         <Items list={groceries}/>
-        <ItemForm />
+        <ItemForm addGroceries={this.addGroceries}/>
       </div>
     );
   }
