@@ -9,9 +9,12 @@ import inCart from './data/InCart';
 class App extends Component {
   state = { groceries: groceriesList, inCart: inCart }
 
-  handleChangeGroceries = (name, id) => {
+  handleChangeGroceries = name => {
     let { groceries } = this.state
-    groceries = groceries.filter(c => c.name !== name ).push({ inCart })
+    groceries = groceries.filter(c => c.name !== name )
+    let { inCart } = this.state
+    inCart.push({name: name, id: inCart.length})
+    this.setState ({ groceries, inCart })
   }
 
   addGroceries = name => {
