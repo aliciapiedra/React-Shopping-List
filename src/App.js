@@ -4,9 +4,15 @@ import Header from './components/Header';
 import groceriesList from './data/GroceriesList';
 import Items from './components/Items';
 import ItemForm from './components/ItemForm';
+import inCart from './data/InCart'; 
 
 class App extends Component {
-  state = { groceries: groceriesList }
+  state = { groceries: groceriesList, inCart: inCart }
+
+  handleChangeGroceries = (name, id) => {
+    let { groceries } = this.state
+    groceries = groceries.filter(c => c.name !== name ).push({ inCart })
+  }
 
   addGroceries = name => {
     const {  groceries } = this.state
@@ -29,7 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header title="Shopping List"/>
-        <Items list={groceries}/>
+        <Items list={groceries} changeGroceries={this.handleChangeGroceries}/>
         <ItemForm addGroceries={this.addGroceries}/>
       </div>
     );
