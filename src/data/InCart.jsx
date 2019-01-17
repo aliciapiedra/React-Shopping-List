@@ -1,5 +1,3 @@
-const inCart = [
-    {
-        
-    }
-]
+const inCart = []
+
+export default inCart

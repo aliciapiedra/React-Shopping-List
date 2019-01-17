@@ -5,9 +5,10 @@ import groceriesList from './data/GroceriesList';
 import Items from './components/Items';
 import ItemForm from './components/ItemForm';
 import inCart from './data/InCart'; 
+import Carts from './components/Carts';
 
 class App extends Component {
-  state = { groceries: groceriesList, inCart: inCart }
+  state = { groceries: groceriesList, inCart: [inCart] }
 
   handleChangeGroceries = name => {
     let { groceries } = this.state
@@ -15,6 +16,14 @@ class App extends Component {
     let { inCart } = this.state
     inCart.push({name: name, id: inCart.length})
     this.setState ({ groceries, inCart })
+  }
+
+  handleReputGroceries = name => {
+    let { inCart } = this.state
+    inCart = inCart.filter(g => g.name !== name)
+    let { groceries } = this.state
+    groceries.push({name: name, id: groceries.length})
+    this.setState ({ inCart, groceries })
   }
 
   addGroceries = name => {
@@ -40,6 +49,7 @@ class App extends Component {
         <Header title="Shopping List"/>
         <Items list={groceries} changeGroceries={this.handleChangeGroceries}/>
         <ItemForm addGroceries={this.addGroceries}/>
+        <Carts cartsList={ inCart } reputGrocery={this.handleReputGroceries}/>
       </div>
     );
   }
