@@ -12,7 +12,7 @@ class App extends Component {
 
   handleChangeGroceries = name => {
     let { groceries } = this.state
-    groceries = groceries.filter(c => c.name !== name )
+    groceries = groceries.filter(item => item.name !== name )
     let { inCart } = this.state
     inCart.push({name: name, id: inCart.length})
     this.setState ({ groceries, inCart })
@@ -47,9 +47,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header title="Shopping List"/>
-        <Items list={groceries} changeGroceries={this.handleChangeGroceries}/>
+        <Items list={groceries} changeGroceries={this.handleChangeGroceries} reputGrocery={this.handleReputGroceries}/>
         <ItemForm addGroceries={this.addGroceries}/>
-        <Carts cartsList={ inCart } reputGrocery={this.handleReputGroceries}/>
+        <Carts cartsList={ inCart } />
       </div>
     );
   }
