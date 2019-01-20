@@ -14,15 +14,15 @@ class App extends Component {
     let { groceries } = this.state
     groceries = groceries.filter(item => item.name !== name )
     let { inCart } = this.state
-    inCart.push({name: name, id: inCart.length})
+    inCart.push({name: name })
     this.setState ({ groceries, inCart })
   }
 
   handleReputGroceries = name => {
     let { inCart } = this.state
-    inCart = inCart.filter(g => g.name !== name)
+    inCart = inCart.filter( g => g.name !== name)
     let { groceries } = this.state
-    groceries.push({name: name, id: groceries.length})
+    groceries.push({name: name })
     this.setState ({ inCart, groceries })
   }
 
