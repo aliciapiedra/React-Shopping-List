@@ -4,52 +4,42 @@ import Header from './components/Header';
 import groceriesList from './data/GroceriesList';
 import Items from './components/Items';
 import ItemForm from './components/ItemForm';
-import inCart from './data/InCart'; 
-import Carts from './components/Carts';
+
 
 class App extends Component {
-  state = { groceries: groceriesList, inCart: [inCart] }
+  state = { groceryList: groceriesList }
 
-  handleChangeGroceries = name => {
-    let { groceries } = this.state
-    groceries = groceries.filter(item => item.name !== name )
-    let { inCart } = this.state
-    inCart.push({name: name })
-    this.setState ({ groceries, inCart })
-  }
-
-  handleReputGroceries = name => {
-    let { inCart } = this.state
-    inCart = inCart.filter( g => g.name !== name)
-    let { groceries } = this.state
-    groceries.push({name: name })
-    this.setState ({ inCart, groceries })
+  handleChange = id => {
+    const { groceryList } = this.state;
+    groceryList[id].inCart = !groceryList[id].inCart
+    this.setState({ groceryList })
   }
 
   addGroceries = name => {
-    const {  groceries } = this.state
+    const {  groceryList } = this.state
     let unique = true
-    groceries.forEach((grocery) => {
+    groceryList.forEach((grocery) => {
       if (grocery.name.toLowerCase() === name.toLowerCase()) {
         unique = false
       } 
     })
     if (unique){
-      groceries.push({ name: name, id: groceries.length })
-      this.setState({ groceries })
+      groceryList.push({ name: name, id: groceryList.length })
+      this.setState({ groceryList })
     } else {
       alert('That item is already on the list!')
     }
   }
 
   render() {
-    const { groceries } = this.state
+    const { groceryList } = this.state
+    const needToBuy = groceryList.filter(item => !item.inCart)
+    const inCart = groceryList.filter(item => item.inCart)
     return (
       <div className="App">
         <Header title="Shopping List"/>
-        <Items list={groceries} changeGroceries={this.handleChangeGroceries} reputGrocery={this.handleReputGroceries}/>
+        <Items needToBuy={needToBuy} inCart={inCart} handleChange={this.handleChange}/>
         <ItemForm addGroceries={this.addGroceries}/>
-        <Carts cartsList={ inCart } />
       </div>
     );
   }

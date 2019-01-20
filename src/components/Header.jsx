@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = ({ title }) => (
-    <header>
+    <header className="head">
         <h1>{title}</h1>
     </header>
 )

@@ -1,12 +1,12 @@
 import React from 'react';
 import Change from './Change';
 
-const Item = props => (
+const Item = ({ symbol, item, status, handleChange }) => (
     <div className="item">
         <span className="item-name">
-            <span>{props.grocery.name}</span>
+            <span>{item.name}</span>
         </span>
-        <Change changeGroceries={props.changeGroceries} reputGrocery={props.reputGrocery} name={props.grocery.name} />
+        <Change symbol={symbol} status={status} item={item} handleChange={handleChange}/>
     </div>
 )
 

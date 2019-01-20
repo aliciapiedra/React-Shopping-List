@@ -1,10 +1,7 @@
 import React from 'react';
 
-const Change = ({ name, changeGroceries, reputGrocery }) => (
-        <div className="change">
-            <button onClick={() => changeGroceries( name )} className="changeAdding"> - </button>
-            <button onClick={() => reputGrocery( name )} className="changeAdding"> + </button>
-        </div>
+const Change = ({ item, symbol, status, handleChange }) => (
+       <button onClick={() => handleChange(item.id)} className={`item-action ${status}`}>{symbol}</button>
 )
 
 export default Change
