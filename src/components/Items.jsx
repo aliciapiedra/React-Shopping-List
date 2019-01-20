@@ -1,11 +1,17 @@
 import React from 'react';
 import Item from './Item';
+import ItemHeader from './ItemHeader';
 
-const Items = ({ list, changeGroceries, reputGrocery }) => (
-    <div>
-        {
-            list.map((item ) => <Item grocery={item} changeGroceries={changeGroceries} reputGrocery={reputGrocery}/>)
-        }
+const Items = ({ needToBuy, inCart, handleChange }) => (
+    <div className="shopping-list">
+        <div className="to-buy">
+            <ItemHeader title="Need To Buy" />
+                {needToBuy.map(item => <Item symbol="+" status="add" item={item} key={item.id} handleChange={handleChange} /> )}
+        </div>
+        <div className="cart">
+            <ItemHeader title="In Cart" />
+                {inCart.map(item => <Item symbole ="-" status ="remove" item={item} key={item.id} handleChange={handleChange} />)}
+        </div>
     </div>
 )
 

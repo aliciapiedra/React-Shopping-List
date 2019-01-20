@@ -16,7 +16,7 @@ class ItemForm extends Component {
     render() {
         const { name } = this.state
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="form" onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Grocery Name" value={name} onChange={this.handleNameChange} />
                 <input type="submit" value="Add Grocery" />
             </form>
