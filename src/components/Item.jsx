@@ -6,7 +6,7 @@ const Item = props => (
         <span className="item-name">
             <span>{props.grocery.name}</span>
         </span>
-        <Change changeGroceries={props.changeGroceries} name={props.grocery.name} />
+        <Change changeGroceries={props.changeGroceries} reputGrocery={props.reputGrocery} name={props.grocery.name} />
     </div>
 )
 
